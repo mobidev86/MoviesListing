@@ -15,6 +15,9 @@ type InputProps = {
 	error?: string;
 	disabled?: boolean;
 	isPassword?: boolean;
+	max?: string;
+	min?: string;
+	maxLength?: number;
 };
 
 const AntInput = ({ ...props }: InputProps) => {
@@ -34,6 +37,9 @@ const AntInput = ({ ...props }: InputProps) => {
 				disabled={props.disabled ?? false}
 				autoComplete={props.value}
 				current-password={props.isPassword ? props.value : undefined}
+				max={props.max}
+				min={props.min}
+				maxLength={props.maxLength}
 			/>
 			{props.isPassword ? (
 				<div className={styles.infoDiv}>

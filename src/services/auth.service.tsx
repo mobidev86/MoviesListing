@@ -28,7 +28,7 @@ const AuthService = () => {
 		axios(RequestHelper('POST', API_LIST.LOGIN, { payload: payload }))
 			.then((response: any) => {
 				const { data } = response?.data;
-				console.log(data);
+
 				const token = data?.token;
 				const user: UserDTO = data;
 				dispatch(setLoggedIn(true));

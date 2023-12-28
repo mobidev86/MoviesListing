@@ -34,16 +34,19 @@ export const userValidationHelper = (user: any, setError: (e: any) => void) => {
 
 export const movieValidation = (movie: any, setError: (e: any) => void) => {
 	const errors: any = {};
+
+	const yearRegex = /^(194[0-9]|19[0-9]\d|200\d|202[0-3])$/;
 	if (!movie.title) {
 		errors.title = 'Please enter movie title.';
 	}
 
 	if (!movie.publish_year) {
 		errors.publish_year = 'Please enter published year.';
+	} else if (!yearRegex.test(movie.publish_year)) {
+		errors.publish_year = 'Year should be between 1900 to 2023.';
+	} else if (Math.sign(movie.publish_year) === -1) {
+		errors.publish_year = 'Please enter valid year';
 	}
-	// else if (!isNaN(movie.publish_year)) {
-	// 	errors.publish_year = 'Year should be number.';
-	// }
 
 	// if (!movie.poster_image) {
 	// 	errors.poster_image = 'Please enter published year.';

@@ -11,7 +11,7 @@ import AuthService from '../../services/auth.service';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { MoviesDTO } from '../../types/movies.types';
-import { Pagination, PaginationProps } from 'antd';
+import { Pagination, PaginationProps, Spin } from 'antd';
 import MoviesService from '../../services/movies.service';
 import { setIsEdit, setSelectedMovie } from '../../store/slices/movies.slice';
 
@@ -56,11 +56,10 @@ const Home = () => {
 		dispatch(setSelectedMovie(e));
 		dispatch(setIsEdit(true));
 		navigate(ROUTES.FORM);
-		console.log(e);
 	};
 
 	return moviesList.length ? (
-		<div className={styles.movieWrapper}>
+		<Spin spinning={loading} className={styles.movieWrapper}>
 			<header className={styles.header}>
 				<div className={styles.heading}>
 					<span>My movies</span> <LuPlusCircle onClick={AddMovie} style={{ cursor: 'pointer' }} size={30} />
@@ -105,7 +104,7 @@ const Home = () => {
 					/>
 				</div>
 			</div>
-		</div>
+		</Spin>
 	) : (
 		<div className={styles.NoMovieWrapper}>
 			<div className={styles.NoMovieWrapper}>Your Movie list is empty</div>

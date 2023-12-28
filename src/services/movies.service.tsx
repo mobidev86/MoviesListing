@@ -38,8 +38,6 @@ const MoviesService = () => {
 		axios(RequestHelper('GET', page ? url : API_LIST.GET_MOVIES))
 			.then((response: any) => {
 				const _data: any = response?.data?.data;
-
-				console.log(_data?.data);
 				dispatch(setMoviesList(_data?.data));
 				dispatch(setPagination({ count: _data?.count } as PaginationDTO));
 				setLoading(false);
@@ -56,11 +54,11 @@ const MoviesService = () => {
 
 	const AddMovieService = ({ dispatch, setLoading, payload }: AddMoviesProps) => {
 		setLoading(true);
-		console.log(payload);
+
 		const formData = new FormData();
-		formData.append('title', payload.title);
-		formData.append('publish_year', payload.publish_year.toString());
-		formData.append('poster_image', payload.poster_image.file);
+		formData.append('title', payload?.title);
+		formData.append('publish_year', payload?.publish_year?.toString());
+		formData.append('poster_image', payload?.poster_image?.file);
 
 		axios
 			.post(API_LIST.ADD_MOVIES, formData, {
@@ -70,7 +68,6 @@ const MoviesService = () => {
 				},
 			})
 			.then((response: any) => {
-				const _data: any = response?.data?.data;
 				getMoviesList({ setLoading, dispatch });
 				setLoading(false);
 				navigate(ROUTES.HOME);
@@ -86,25 +83,22 @@ const MoviesService = () => {
 	};
 
 	const UpdateMovieService = ({ dispatch, setLoading, payload }: UpdateMoviesProps) => {
-		console.log(payload);
 		let image;
 		if (payload?.poster_image?.file) {
-			image = payload.poster_image?.file;
+			image = payload?.poster_image?.file;
 		} else {
-			image = payload.poster_image;
+			image = payload?.poster_image;
 		}
 
 		const formData = new FormData();
-		formData.append('title', payload.title);
-		formData.append('publish_year', payload.publish_year.toString());
+		formData.append('title', payload?.title);
+		formData.append('publish_year', payload?.publish_year.toString());
 		formData.append('poster_image', image);
-		formData.append('_id', payload._id ?? '');
+		formData.append('_id', payload?._id ?? '');
 
-		console.log(formData);
 		setLoading(true);
 		axios(RequestHelper('POST', API_LIST.UPDATE_MOVIES, { payload: formData }))
 			.then((response: any) => {
-				const _data: any = response?.data?.data;
 				dispatch(setSelectedMovie({} as MoviesDTO));
 				dispatch(setIsEdit(false));
 				getMoviesList({ setLoading, dispatch });

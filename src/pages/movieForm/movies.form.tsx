@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import styles from './movies.module.scss';
 import { ImageUpload } from '../../components/shared/ImageUpload/imageUploader';
 import AntInput from '../../components/elements/input/input.element';
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 import CustomButton from '../../components/elements/Button/button.element';
 import { MoviesDTO } from '../../types/movies.types';
 import { useNavigate } from 'react-router-dom';
@@ -29,6 +29,7 @@ const MoviesForm = (props: Props) => {
 	const [error, setError] = useState({
 		title: '',
 		publish_year: '',
+		imageUploading: '',
 	});
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -78,12 +79,12 @@ const MoviesForm = (props: Props) => {
 	};
 
 	return (
-		<div className={styles.wrapper}>
+		<Spin spinning={loading} className={styles.wrapper}>
 			<div className={styles.heading}>{isEdit ? 'Edit' : 'Create a new movie'}</div>
 
 			<div className={styles.formBody}>
 				<div className={styles.left}>
-					<ImageUpload setImages={setImages} images={images} />
+					<ImageUpload setImages={setImages} images={images} setError={setError} />
 				</div>
 				<form className={styles.right}>
 					<AntInput
@@ -101,6 +102,9 @@ const MoviesForm = (props: Props) => {
 						width="250px"
 						type="Number"
 						error={error.publish_year}
+						min="1"
+						max="2023"
+						maxLength={4}
 					/>
 					<div className={styles.buttonWrapper}>
 						<Button onClick={handleCancel} className={styles.cancelButton}>
@@ -112,7 +116,7 @@ const MoviesForm = (props: Props) => {
 					</div>
 				</form>
 			</div>
-		</div>
+		</Spin>
 	);
 };
 

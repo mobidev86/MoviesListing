@@ -8,19 +8,19 @@ import ImageUploading, { ImageListType } from 'react-images-uploading';
 interface imageUploadProps {
 	setImages: (e: any) => void;
 	images: any;
+	setError: (e: any) => void;
 }
 
-export function ImageUpload({ images, setImages }: imageUploadProps) {
+export function ImageUpload({ images, setImages, setError }: imageUploadProps) {
 	const onChange = (imageList: ImageListType, addUpdateIndex: number[] | undefined) => {
-		console.log(imageList);
 		setImages(imageList);
 	};
 
 	return (
-		<ImageUploading value={images} onChange={onChange} maxNumber={1}>
-			{({ imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps }) => {
-				console.log(imageList.length, imageList);
+		<ImageUploading value={images} onChange={onChange} maxNumber={1} acceptType={['jpg', 'gif', 'png']}>
+			{({ imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps, errors }) => {
 				// write your building UI
+
 				return (
 					<div className={styles.uploadWrapper}>
 						{imageList?.length <= 0 ? (
