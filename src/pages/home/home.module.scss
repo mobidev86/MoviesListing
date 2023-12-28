@@ -1,0 +1,142 @@
+.NoMovieWrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+}
+
+.NoMovieWrapper {
+	font-size: 4rem;
+	font-weight: 800;
+	color: white;
+}
+
+.movieWrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 100vh;
+	color: white;
+}
+
+.heading {
+	font-size: 3rem;
+	font-weight: 600;
+	color: white;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	@media (max-width: 767px) {
+		font-size: 1.5rem;
+	}
+	:last-child {
+		margin-top: 0.4rem;
+	}
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 3rem;
+	@media (max-width: 767px) {
+		padding: 1.5rem 1rem;
+	}
+}
+
+.logoutDiv {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	cursor: pointer;
+}
+
+.formBody {
+	padding: 0 3rem 120px;
+	width: 100%;
+	@media (max-width: 767px) {
+		padding: 0 1rem;
+	}
+}
+
+.cardWrapper {
+	display: flex;
+	align-items: start;
+	justify-content: start;
+	flex-wrap: wrap;
+	flex-grow: 1;
+	gap: 1rem;
+	width: 100%;
+	padding: 1rem;
+	position: relative;
+	z-index: 80;
+	@media (max-width: 767px) {
+		padding: 0;
+	}
+}
+
+.card {
+	background-color: rgba(0, 0, 0, 0.219);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	color: white;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	width: 15rem;
+	cursor: pointer;
+	@media (max-width: 430px) {
+		width: 100%;
+	}
+
+	&:hover {
+		background-color: rgba(88, 88, 88, 0.11);
+	}
+}
+
+.image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 0.5rem;
+}
+
+.cardImage {
+	height: 18rem;
+}
+
+.paginationStyles {
+	color: white !important;
+	display: flex;
+	padding: 2rem 0;
+	align-items: center;
+	justify-content: center;
+}
+.icon {
+	color: white !important;
+	font-size: large;
+	font-weight: 800;
+}
+
+.cardText {
+	margin-left: 1.5rem;
+	padding: 1rem;
+	display: flex;
+	align-items: start;
+	justify-content: start;
+	gap: 0.5rem;
+	width: 100%;
+	flex-direction: column;
+}
+
+.movieTitle {
+	font-size: 1.5rem;
+}
+
+.moviePublishYear {
+	font-size: 0.8rem;
+}
