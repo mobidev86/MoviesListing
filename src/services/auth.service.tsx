@@ -24,6 +24,7 @@ interface LogoutServiceProps {
 const AuthService = () => {
 	const navigate = useNavigate();
 	const LoginService = ({ dispatch, setLoading, payload }: LoginServiceProps) => {
+		setLoading(true);
 		axios(RequestHelper('POST', API_LIST.LOGIN, { payload: payload }))
 			.then((response: any) => {
 				const { data } = response?.data;
